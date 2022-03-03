@@ -65,6 +65,13 @@ port=3306
 user=mysql
 symbolic-links=0
 character_set_server=utf8
+tls_version=TLSv1.2
+log-error=/var/log/mysqld.log
+server-id=1
+log-bin=mysql-bin
+[client]
+port=3306
+socket=${base_dir}/tmp/mysql.scok
 EOF
 
     # cp autostart file
