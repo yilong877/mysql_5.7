@@ -1,0 +1,36 @@
+#!/bin/bash
+
+base_dir=/opt/mysql
+data_dir=$base_dir/data
+# mysql-boost-5.7.37.tar.gz md5sum
+original_boost_MD5=d0489fc3880248a58759c50bfb286dbb
+password=mysql123456
+processors=`grep 'processor' /proc/cpuinfo | wc -l`
+
+# mysql-5.7.37.tar.gz md5sum
+# original_MD5=5c59b7f17f6bfd265ef8f6384a40f510
+
+function compile()
+{
+    cmake -DCMAKE_INSTALL_PREFIX=${base_dir} \
+          -DMYSQL_DATADIR=${data_dir} \
+          -DWITH_BOOST=./boost \
+          -DMYSQL_UNIX_ADDR=${base_dir}/tmp/mysql.sock \
+          -DSYSTEMD_PID_DIR=${base_dir}/tmp/ \
+          -DDEFAULT_CHARSET=utf8 \
+          -DMYSQL_TCP_PORT=3306 \
+          -DDEFAULT_COLLATION=utf8_general_ci \
+          -DENABLED_LOCAL_INFILE=ON \
+          -DWITH_INNOBASE_STORAGE_ENGINE=1 \
+          -DWITH_FEDERATED_STORAGE_ENGINE=1 \
+          -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \
+          -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \
+          -DWITHOUT_PARTITION_STORAGE_ENGINE=1 \
+          -DWITH_ZLIB=bundled \
+          -DENABLED_LOCAL_INFILE=1 \
+          -DWITH_EMBEDDED_SERVER=1 \
+          -DWITH_SYSTEMD=1 \
+          -DWITH_DEBUG=0
+
+    make -j ${processors} && make install
+}
