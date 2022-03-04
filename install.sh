@@ -29,7 +29,6 @@ if [ ${MD5} == ${original_boost_MD5} ]; then
     # make directories
     mkdir -p ${base_dir}/{data,tmp}
 
-    mkdir mysql
     tar -zxvf mysql-boost-5.7.37.tar.gz
     cd mysql-5.7.37
 
