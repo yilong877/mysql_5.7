@@ -83,7 +83,7 @@ EOF
     echo 'export MYSQL_HOME PATH' >> /etc/profile
     source /etc/profile
 
-    # create files naccessaried
+    # create files necessary
     touch ${base_dir}/tmp/{mysqld.pid,mysql.sock}
     chown -R mysql:mysql ${base_dir}
 
