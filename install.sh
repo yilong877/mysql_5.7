@@ -73,10 +73,6 @@ port=3306
 socket=${base_dir}/tmp/mysql.sock
 EOF
 
-    # cp autostart file
-    cp ${base_dir}/usr/lib/systemd/system/mysqld.service /usr/lib/systemd/system/
-    systemctl daemon-reload
-
     # set ENV
     echo "MYSQL_HOME=${base_dir}" >> /etc/profile
     echo 'PATH=$PATH:$MYSQL_HOME/bin' >> /etc/profile
@@ -91,8 +87,12 @@ EOF
     ${base_dir}/bin/mysqld --initialize-insecure --user=mysql \
                            --basedir=${base_dir} --datadir=${data_dir}
 
+    # cp autostart file
+    cp ${base_dir}/usr/lib/systemd/system/mysqld.service /usr/lib/systemd/system/
+    systemctl daemon-reload
+
     # start mysql
-    systemctl start mysqld.service
+    systemctl enable mysqld.service && systemctl start mysqld.service
     ${base_dir}/bin/mysqladmin -u root password "${password}"
 
 else
