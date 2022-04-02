@@ -65,7 +65,7 @@ user=mysql
 symbolic-links=0
 character_set_server=utf8
 tls_version=TLSv1.2
-log-error=${base_dir}/tmp/mysqld.log
+log-error=${base_dir}/tmp/error.log
 server-id=1
 log-bin=mysql-bin
 [client]
@@ -84,7 +84,7 @@ EOF
     source /etc/profile
 
     # create files necessary
-    touch ${base_dir}/tmp/{mysqld.pid,mysql.sock}
+    touch ${base_dir}/tmp/{mysqld.pid,mysql.sock,error.log}
     chown -R mysql:mysql ${base_dir}
 
     # initialize mysql
