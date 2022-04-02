@@ -39,7 +39,7 @@ if [ ${MD5} == ${original_boost_MD5} ]; then
 
     while [ $? -ne 0 ]; do
 
-        let ${counter}+=1
+        let $counter+=1
 
         if [ ${counter} -eq 3 ]; then
             echo "compiling failed......please compile manually"
