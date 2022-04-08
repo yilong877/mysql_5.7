@@ -32,16 +32,16 @@ if [ ${MD5} == ${original_boost_MD5} ]; then
     tar -zxvf mysql-boost-5.7.37.tar.gz
     cd mysql-5.7.37
 
-    # set compile options
+    # set compile options, if compiled failed three times, then exit.
     counter=0
 
     compile
 
     while [ $? -ne 0 ]; do
 
-        let $counter++
+        let counter++
 
-        if [ ${counter} -eq 3 ]; then
+        if [ $counter -eq 3 ]; then
             echo "compiling failed......please compile manually"
             echo "Exit!!!"
             exit 2
