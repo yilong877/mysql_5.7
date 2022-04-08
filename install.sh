@@ -39,7 +39,7 @@ if [ ${MD5} == ${original_boost_MD5} ]; then
 
     while [ $? -ne 0 ]; do
 
-        let $counter+=1
+        let $counter++
 
         if [ ${counter} -eq 3 ]; then
             echo "compiling failed......please compile manually"
@@ -93,7 +93,7 @@ EOF
 
     # start mysql
     systemctl enable mysqld.service && systemctl start mysqld.service
-    ${base_dir}/bin/mysqladmin -u root password "${password}"
+    ${base_dir}/bin/mysqladmin -u root password "$password"
 
 else
     echo "Oops, file is not correct or downloading failed......"
