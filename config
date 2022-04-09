@@ -1,7 +1,7 @@
 #!/bin/bash
 
 base_dir=/opt/mysql
-data_dir=$base_dir/data
+data_dir=${base_dir}/data
 # mysql-boost-5.7.37.tar.gz md5sum
 original_boost_MD5=d0489fc3880248a58759c50bfb286dbb
 password=mysql123456
